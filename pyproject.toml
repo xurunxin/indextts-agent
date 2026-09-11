@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "indextts-agent"
+version = "0.1.0"
+description = "Agent CLI and durable local/remote job service for IndexTTS-2.5"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/xurunxin/indextts-agent"
+Issues = "https://github.com/xurunxin/indextts-agent/issues"
+
+[project.optional-dependencies]
+server = ["fastapi>=0.115,<1", "uvicorn>=0.34,<1", "soundfile>=0.12,<1"]
+test = ["pytest>=8,<10", "httpx>=0.28,<1"]
+
+[project.scripts]
+itt = "indextts_agent.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/indextts_agent"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

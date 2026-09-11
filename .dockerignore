@@ -1,0 +1,7 @@
+*
+!Dockerfile
+!pyproject.toml
+!src/
+!src/**
+**/__pycache__/
+managed-runtime

@@ -1,0 +1,15 @@
+services:
+  indextts:
+    build: .
+    image: indextts-agent:local
+    init: true
+    restart: unless-stopped
+    gpus: all
+    ports:
+      - "${ITT_BIND_IP:-127.0.0.1}:${ITT_PORT:-8095}:8095"
+    environment:
+      ITT_API_KEY: "${ITT_API_KEY:?Set ITT_API_KEY before starting}"
+    volumes:
+      - "${ITT_DATA_DIR:-./.itt}:/data"
+      - "${ITT_MODEL_DIR:-./upstream/checkpoints}:/opt/indextts/checkpoints"
+    stop_grace_period: 5m
